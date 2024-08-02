@@ -1,0 +1,103 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: 10px;
+}
+.music-player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.player-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.album-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.controls button {
+  margin: 0 5px;
+}
+
+.progress-bar {
+  width: 100%;
+  max-width: 300px;
+  margin-left: 10px;
+}
+
+.content-layout {
+  display: flex;
+  height: calc(100vh - 100px);
+  width: 100%;
+}
+
+.playlist-section {
+  width: 25%;
+  overflow-y: auto;
+  align-content: flex-start;
+}
+
+.result-section {
+  width: 75%;
+  overflow-y: auto;
+}

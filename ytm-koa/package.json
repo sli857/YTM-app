@@ -1,0 +1,29 @@
+{
+  "name": "ytm-koa",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "clean": "rm ./Library/index.json ./Library/*.jpg"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@koa/bodyparser": "^5.1.1",
+    "@koa/cors": "^5.0.0",
+    "axios": "^1.7.2",
+    "crypto-js": "^4.2.0",
+    "jpeg-js": "^0.4.4",
+    "koa": "^2.15.3",
+    "koa-bodyparser": "^4.4.1",
+    "koa-jwt": "^4.0.4",
+    "koa-router": "^12.0.1",
+    "koa-stream": "^0.2.0",
+    "mongoose": "^8.4.4",
+    "music-metadata": "^8.3.0"
+  }
+}
