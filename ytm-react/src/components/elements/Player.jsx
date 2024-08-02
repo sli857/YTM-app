@@ -4,7 +4,7 @@ import "../content/Content.css";
 
 const Player = ({ trackId, pid }) => {
   const [audioSrc, setAudioSrc] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null); // State for image source
+  const [imageSrc, setImageSrc] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -41,7 +41,7 @@ const Player = ({ trackId, pid }) => {
       }
     };
     fetchImage();
-  }, [pid]); // This effect runs when pid changes
+  }, [pid]);
 
   const togglePlayPause = () => {
     if (isPlaying) {
@@ -75,11 +75,11 @@ const Player = ({ trackId, pid }) => {
   };
 
   const nextTrack = () => {
-    // Implement logic to fetch the next track id and pid for image
+    // Implement logic to fetch the next track id and pid
   };
 
   const previousTrack = () => {
-    // Implement logic to fetch the previous track id and pid for image
+    // Implement logic to fetch the previous track id and pid
   };
 
   const formatTime = (time) => {
@@ -91,7 +91,7 @@ const Player = ({ trackId, pid }) => {
   return (
     <div className="player-container">
       <img
-        src={imageSrc || "./src/assets/default.jpg"} // Use dynamic imageSrc or fallback to default
+        src={imageSrc || "./src/assets/default.jpg"}
         alt="Album Image"
         className="album-image"
       />
