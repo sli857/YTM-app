@@ -41,7 +41,7 @@ function Explore() {
             <p className="playlist-title">{playlist.name}</p>
             <p className="playlist-subtitle">{playlist.count} Songs</p>
             <div className="playlist-fade">
-              <IconContext.Provider value={{ size: "50px", color: "E99D72" }}>
+              <IconContext.Provider value={{ size: "45px", color: "5674a7" }}>
                 <AiFillPlayCircle />
               </IconContext.Provider>
             </div>
