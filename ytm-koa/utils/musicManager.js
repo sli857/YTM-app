@@ -51,7 +51,6 @@ const runUpdateWorkers = async (lib, jobs) => {
     return new Promise((resolve) => {
       const worker = new Worker("./utils/worker.js");
       worker.postMessage({ task: "update", job: job, lib: lib });
-      // TODO worker.on();
       worker.on("message", (message) => {
         //console.log(message.toAdd);
         if (message.toAdd.length !== 0) {

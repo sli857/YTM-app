@@ -12,6 +12,10 @@ metadataRouter.get("/playlists", async (ctx) => {
   try {
     const Playlists = dbConnection.collection("Playlists");
     const playlists = await Playlists.find().toArray();
+    playlists.map(async (playlist) => {
+      playlist.cover = await getTrackImage({ pid: playlist.pid });
+    });
+
     ctx.status = 200;
     ctx.body = { status: 0, playlists };
   } catch (error) {

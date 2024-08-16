@@ -72,7 +72,8 @@ var playlistSchemma = new mongoose.Schema(
       type: String,
       enum: ["playlist", "album"],
     },
-    last_update: Date,
+    last_update: { type: Date, default: Date.now() },
+    count: { type: Number, default: 0 },
   },
   { Collection: "playlists" }
 );

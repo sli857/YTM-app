@@ -70,6 +70,7 @@ async function dbInit(indexPath) {
         name: album,
         image: `../Library/${albumId}.jpg`,
         type: "album",
+        count: tracks.length,
       });
       const playlistPromise = plist
         .save()
