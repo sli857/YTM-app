@@ -24,7 +24,7 @@ function Auth({ setAuth }) {
 
   return (
     <div className="login-page">
-      <img src="/YTM-logo.webp" alt="YTM Logo" className="logo" />
+      <img src="/YTM-logo.png" alt="YTM Logo" className="logo" />
       <h1>{isSignup ? "Sign Up" : "Login"}</h1>
       <input
         type="text"

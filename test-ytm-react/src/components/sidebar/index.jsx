@@ -8,7 +8,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 function Sidebar() {
   return (
     <div className="sidebar-container">
-      <img src="/YTM-logo.webp" className="profile-img" alt="profile image" />
+      <img src="/YTM-logo.png" className="profile-img" alt="profile image" />
       <div>
         <SidebarButton title="Explore" to="/" icon={<MdSpaceDashboard />} />
         <SidebarButton
