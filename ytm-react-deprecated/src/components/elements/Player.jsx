@@ -34,6 +34,7 @@ const Player = ({ trackId, pid }) => {
           `http://localhost:3000/metadata/image?pid=${pid}`,
           { responseType: "blob" }
         );
+        console.log(response);
         const imageUrl = URL.createObjectURL(response.data);
         setImageSrc(imageUrl);
       } catch (error) {
