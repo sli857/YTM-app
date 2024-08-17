@@ -50,9 +50,9 @@ metadataRouter.get("/playlist", async (ctx) => {
       return Library.findOne({ trackid: track.tid });
     });
     await Promise.all(promises);
-
+    const image = await getTrackImage({ pid: pid });
     ctx.status = 200;
-    ctx.body = { status: 0, playlist };
+    ctx.body = { status: 0, playlist, image };
   } catch (error) {
     console.error(error);
     ctx.status = 500;
