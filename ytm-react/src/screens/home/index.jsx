@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Library from "../library/index.jsx";
-import Explore from "../explore/explore.jsx";
-import Player from "../player/player.jsx";
-import Sidebar from "../../components/sidebar/index.jsx";
-import Auth from "../auth/auth.jsx";
+import { useNavigate } from "react-router-dom";
+import Library from "../library";
+import Explore from "../explore";
+import Player from "../player";
+import Sidebar from "../../components/sidebar";
+import Auth from "../auth";
 import "./home.css";
 
 export default function Home() {

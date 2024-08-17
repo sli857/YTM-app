@@ -19,7 +19,6 @@ function Auth({ setAuth }) {
   const handleSignup = async () => {};
   const handelLogin = async () => {
     setAuth(true);
-    navigate("/");
   };
 
   return (

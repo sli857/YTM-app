@@ -11,7 +11,6 @@ function Explore() {
 
   useEffect(() => {
     APIKit.get("metadata/playlists").then((res) => {
-      console.log(res.data);
       setPlaylists(res.data.playlists);
     });
   }, []);
