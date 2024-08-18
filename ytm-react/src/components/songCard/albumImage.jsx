@@ -3,11 +3,13 @@ import React from "react";
 import "./albumImage.css";
 
 function AlbumImage({ image }) {
-  const url = URL.createObjectURL(
-    new Blob([new Uint8Array(image.data)], {
-      type: "image/jpg",
-    })
-  );
+  const url =
+    image === undefined
+      ? "/YTM-logo.png"
+      : URL.createObjectURL(
+          new Blob([new Uint8Array(image?.data)], { type: "image/jpg" })
+        );
+
   return (
     <div className="albumImage flex">
       <img src={url} alt="album art" className="albumImage-art" />
