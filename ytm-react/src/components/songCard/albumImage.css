@@ -8,14 +8,14 @@
 
 .albumImage img {
   border-radius: 30px;
-  width: 100%;
+  width: 88%;
   aspect-ratio: 1;
 }
 
 .albumImage-shadow {
   -webkit-filter: blur(10px);
   filter: blur(10px);
-  width: 90%;
+  width: 95%;
   position: absolute;
   z-index: -1;
   top: 20px;

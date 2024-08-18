@@ -3,29 +3,35 @@ import React from "react";
 import "./albumInfo.css";
 
 function AlbumInfo({ album }) {
-  console.log(album);
   const artists = [];
-  album.map((track) => {
+  album?.map((track) => {
     track.artist.map((e) => {
       if (!artists.includes(e)) {
         artists.push(e);
       }
     });
   });
-  console.log(artists);
+  const albumName = album[0].album;
   return (
-    <div>
+    <div className="albumInfo-card">
       <div className="albumName-container">
-        <p></p>
+        <div className="marquee">
+          <p>{albumName + " - " + artists?.join(", ")}</p>
+        </div>
       </div>
       <div className="album-info">
-        <p></p>
+        <p>{`${albumName} has ${album.length} song(s)`}</p>
       </div>
       <div className="album-release">
-        <p></p>
+        <p>Release Date: {album.release_date ? album.release_date : "N/A"}</p>
       </div>
     </div>
   );
 }
+
+// function AlbumInfo({ album }) {
+//   console.log(album);
+//   return <div></div>;
+// }
 
 export default AlbumInfo;

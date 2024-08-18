@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import "./explore.css";
 function Explore() {
   const [playlists, setPlaylists] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     APIKit.get("metadata/playlists").then((res) => {
       setPlaylists(res.data.playlists);
     });
   }, []);
+
+  const navigate = useNavigate();
 
   const playPlaylist = (pid) => {
     navigate("/player", { state: { pid: pid } });
