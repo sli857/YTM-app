@@ -11,7 +11,7 @@ function AlbumInfo({ album }) {
       }
     });
   });
-  const albumName = album[0].album;
+  const albumName = album[0]?.album;
   return (
     <div className="albumInfo-card">
       <div className="albumName-container">
