@@ -35,7 +35,12 @@ function Player() {
   return (
     <div className="screen-container flex">
       <div className="left-player-body">
-        <AudioPlayer currentTrack={currentTrack} currentImage={currentImage} />
+        <AudioPlayer
+          currentTrack={currentTrack}
+          currentImage={currentImage}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
         {/* <p>{currentTrack?.title}</p> */}
       </div>
       <div className="right-player-body">
