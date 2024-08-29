@@ -32,27 +32,19 @@ function Player() {
   }, [location.state]);
 
   useEffect(() => {
-    console.log({ tracks });
-  }, [tracks]);
-
-  useEffect(() => {
     setCurrentTrack(tracks[currentIndex]);
   }, [currentIndex, tracks]);
 
   return (
     <div className="screen-container flex">
       <div className="left-player-body">
-        {tracks.length > 0 ? (
-          <AudioPlayer
-            currentTrack={currentTrack}
-            currentImage={currentImage}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-            tracks={tracks}
-          />
-        ) : (
-          <p>loading</p>
-        )}
+        <AudioPlayer
+          currentTrack={currentTrack}
+          currentImage={currentImage}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          tracks={tracks}
+        />
         <LyricsCard />
       </div>
       <div className="right-player-body">

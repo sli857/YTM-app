@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import ProgressCircle from "./progressCircle";
 import WaveAnimation from "./waveAnimation";
 import Controls from "./controls";
-import APIKit from "/src/APIs.js";
 import "./audioPlayer.css";
 
 function AudioPlayer({
@@ -25,7 +24,7 @@ function AudioPlayer({
     return `http://localhost:3000/stream?trackid=${trackId}`;
   };
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
 
   const audioSrc = getTrackSrc(tracks[currentIndex]?.trackid);
@@ -37,24 +36,22 @@ function AudioPlayer({
   const isReady = useRef(false);
 
   useEffect(() => {
-    // Create a new audio object each time the source changes
+    // Create a new audio object only if audioSrc changes
     const newAudio = new Audio(audioSrc);
     audioRef.current = newAudio;
-    setTrackProgress(0); // Reset progress on new audio
 
     const startTimer = () => {
       clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
-        if (newAudio.ended) {
+        if (audioRef.current.ended) {
           handleNext();
         } else {
-          setTrackProgress(newAudio.currentTime);
+          setTrackProgress(audioRef.current.currentTime);
         }
       }, 1000);
     };
 
     const onLoadedMetadata = () => {
-      // Metadata has loaded, update duration, etc.
       if (isPlaying) {
         newAudio.play();
         startTimer();
@@ -69,7 +66,27 @@ function AudioPlayer({
       clearInterval(intervalRef.current);
       newAudio.removeEventListener("loadedmetadata", onLoadedMetadata);
     };
-  }, [audioSrc, isPlaying]);
+  }, [audioSrc]); // Removed isPlaying from dependencies
+
+  useEffect(() => {
+    // Play or pause when isPlaying changes, without reinitializing the audio object
+    if (isPlaying && isReady.current) {
+      audioRef.current.play();
+      const startTimer = () => {
+        clearInterval(intervalRef.current);
+        intervalRef.current = setInterval(() => {
+          if (audioRef.current.ended) {
+            handleNext();
+          } else {
+            setTrackProgress(audioRef.current.currentTime);
+          }
+        }, 1000);
+      };
+      startTimer();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
     // Cleanup function for unmounting
@@ -108,10 +125,10 @@ function AudioPlayer({
       <div className="player-left-body">
         <ProgressCircle
           percentage={currentPercentage}
-          isPlaying={true}
+          isPlaying={isPlaying}
           image={imageUrl}
           size={300}
-          color="#c96850"
+          color="#8ba0e4"
         />
       </div>
       <div className="player-right-body flex">
@@ -120,7 +137,8 @@ function AudioPlayer({
         <div className="player-right-bottom flex">
           <div className="song-duration flex">
             <p className="duration">{formatTime(trackProgress)}</p>
-            <WaveAnimation isPlaying={true} />
+            <WaveAnimation isPlaying={isPlaying} />
+            {/* <p className="duration">{formatTime(audioRef.current.duration)}</p> */}
             <p className="duration">{currentTrack?.length}</p>
           </div>
           <Controls
