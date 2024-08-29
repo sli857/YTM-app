@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import APIKit from "/src/APIs.js";
 import SongCard from "/src/components/songCard";
 import Queue from "/src/components/queue";
+import LyricsCard from "/src/components/lyricsCard";
 
 import "./player.css";
 import AudioPlayer from "../../components/audioPlayer";
@@ -15,18 +16,24 @@ function Player() {
   const [currentImage, setCurrentImage] = useState({});
 
   useEffect(() => {
-    const pid = location.state?.pid;
-    APIKit.get(`metadata/playlist?pid=${pid}`)
-      .then((res) => {
-        console.log(res?.data);
-        setTracks(res.data?.playlist);
-        setCurrentImage(res.data?.image);
-        setCurrentTrack(res.data?.playlist[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const getTracks = () => {
+      const pid = location.state?.pid;
+      APIKit.get(`metadata/playlist?pid=${pid}`)
+        .then((res) => {
+          setTracks(res.data?.playlist);
+          setCurrentImage(res.data?.image);
+          setCurrentTrack(res.data?.playlist[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getTracks();
   }, [location.state]);
+
+  useEffect(() => {
+    console.log({ tracks });
+  }, [tracks]);
 
   useEffect(() => {
     setCurrentTrack(tracks[currentIndex]);
@@ -35,13 +42,18 @@ function Player() {
   return (
     <div className="screen-container flex">
       <div className="left-player-body">
-        <AudioPlayer
-          currentTrack={currentTrack}
-          currentImage={currentImage}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-        />
-        {/* <p>{currentTrack?.title}</p> */}
+        {tracks.length > 0 ? (
+          <AudioPlayer
+            currentTrack={currentTrack}
+            currentImage={currentImage}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            tracks={tracks}
+          />
+        ) : (
+          <p>loading</p>
+        )}
+        <LyricsCard />
       </div>
       <div className="right-player-body">
         <SongCard album={tracks} image={currentImage} />
