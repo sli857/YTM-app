@@ -3,14 +3,27 @@ import APIKit from "/src/APIs.js";
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 import "./explore.css";
+
+const verify = async () => {
+  let res = await axios({
+    method: "post",
+    url: "http://127.0.0.1:3000/verify",
+    withCredentials: true, // 发送凭证，包括cookies等
+  });
+  if (res.data.msg !== "OK") {
+    window.location = "/";
+  }
+};
+verify();
+
 function Explore() {
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     APIKit.get("metadata/playlists").then((res) => {
-      setPlaylists(res.data.playlists);
+      setPlaylists(res.data?.playlists);
     });
   }, []);
 
@@ -32,7 +45,7 @@ function Explore() {
             <img
               className="playlist-image"
               src={URL.createObjectURL(
-                new Blob([new Uint8Array(playlist.cover.data)], {
+                new Blob([new Uint8Array(playlist.cover?.data)], {
                   type: "image/jpg",
                 })
               )}

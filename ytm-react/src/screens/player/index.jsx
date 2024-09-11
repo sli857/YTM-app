@@ -4,9 +4,20 @@ import APIKit from "/src/APIs.js";
 import SongCard from "/src/components/songCard";
 import Queue from "/src/components/queue";
 import LyricsCard from "/src/components/lyricsCard";
-
+import axios from "axios";
 import "./player.css";
 import AudioPlayer from "../../components/audioPlayer";
+const verify = async () => {
+  let res = await axios({
+    method: "post",
+    url: "http://127.0.0.1:3000/verify",
+    withCredentials: true, // 发送凭证，包括cookies等
+  });
+  if (res.data.msg !== "OK") {
+    window.location = "/";
+  }
+};
+verify();
 
 function Player() {
   const location = useLocation();
